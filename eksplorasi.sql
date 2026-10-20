@@ -15,3 +15,35 @@ GROUP BY p.nama
 ORDER BY terjual DESC
 LIMIT 5;
 
+SELECT COUNT(*) AS jumlah_transaksi
+FROM transaksi;
+
+SELECT
+    SUM(jumlah_transaksi) AS total_transaksi,
+    SUM(omzet) AS total_omzet
+FROM mart_omzet_harian;
+
+SELECT table_schema, table_name
+FROM information_schema.tables
+WHERE table_name = 'mart_omzet_harian';
+
+SELECT *
+FROM public.mart_omzet_harian
+LIMIT 10;
+
+SELECT
+    SUM(jumlah_transaksi) AS total_transaksi,
+    SUM(omzet) AS total_omzet
+FROM public.mart_omzet_harian;
+
+INSERT INTO transaksi
+    (id_transaksi, id_pelanggan, tanggal, kanal, total)
+VALUES
+    (5001, 1, NOW(), 'web', -50000);
+
+DELETE FROM transaksi
+WHERE id_transaksi = 5001;
+
+SELECT COUNT(*) AS jumlah_transaksi
+FROM transaksi;
+
